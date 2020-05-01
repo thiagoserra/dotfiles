@@ -13,6 +13,7 @@ call vundle#begin()
 	Plugin 'vim-scripts/indentpython.vim'
 	Plugin 'nvie/vim-flake8'
 	Plugin 'tpope/vim-markdown'
+    Plugin 'mattn/emmet-vim'
 "Themes
 	Plugin 'dracula/vim'
     Plugin 'morhetz/gruvbox'
