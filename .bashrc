@@ -118,3 +118,15 @@ fi
 
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias install='sudo apt install'
+alias remove='sudo apt remove'
+alias autoremove='sudo apt autoremove'
+alias autoclean='sudo apt autoclean'
+alias rm='rm -i'
+alias hgrep='history | grep'
+alias pg='ps aux | grep'
+alias lg='ls -la | grep'
+
+
