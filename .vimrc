@@ -9,9 +9,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "Tools
 	Plugin 'VundleVim/Vundle.vim'
+    Plugin 'davidhalter/jedi-vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'jistr/vim-nerdtree-tabs'
 "Syntax
 	Plugin 'vim-scripts/indentpython.vim'
 	Plugin 'nvie/vim-flake8'
+    Plugin 'maralla/completor.vim'
 	Plugin 'tpope/vim-markdown'
     Plugin 'mattn/emmet-vim'
 "Themes
@@ -49,6 +54,8 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=e
 set clipboard=unnamed
+set splitbelow
+set splitright
 
 "Status-line
 set statusline=
@@ -61,12 +68,15 @@ set statusline+=%= "Right side settings
 set statusline+=%#Search#
 set statusline+=\ %l/%L
 set statusline+=\ [%c]
-set statusline+=\ %{kite#statusline()}
 
 " config  - plugins
 let python_highlight_all=1
 let g:kite_auto_complete=1
 let g:kite_tab_complete=1
+let NERDTreeShowHidden=1
+
+"nao abrir arquivos na janela do nerdtree
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4
@@ -87,13 +97,16 @@ autocmd BufWritePre * :call TrimWhitespace()
 
 "Key-bindings
 let mapleader=" "
-map <F2> :Lex!<CR>
 map <F3> :source ~/.vimrc<CR>
-
-
+map <F2> :NERDTreeToggle<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Color, font ...
 set guifont=Fira\ Code\ 12
 set t_Co=256
 set background=dark termguicolors cursorline
 colorscheme onedark
+
