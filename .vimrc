@@ -17,6 +17,7 @@ call vundle#begin()
 "Themes
 	Plugin 'dracula/vim'
     Plugin 'morhetz/gruvbox'
+    Plugin 'joshdick/onedark.vim'
 
 call vundle#end()
 " -------------------------
@@ -95,5 +96,4 @@ map <F3> :source ~/.vimrc<CR>
 set guifont=Fira\ Code\ 12
 set t_Co=256
 set background=dark termguicolors cursorline
-colorscheme gruvbox
-
+colorscheme onedark
