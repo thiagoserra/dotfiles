@@ -37,10 +37,10 @@ call vundle#end()
 " VUNDLE.VIM REQUIRE CONFIG
 " END ---------------------
 
-"General Settings
-set encoding=UTF-8
-filetype plugin indent on  "Enabling Plugin & Indent
-syntax on  "Turning Syntax on
+" General Settings
+set encoding=utf-8
+filetype plugin indent on
+syntax on
 set autoread wildmode=longest,list,full
 set backspace=indent,eol,start confirm
 set shiftwidth=4 autoindent smartindent tabstop=4 softtabstop=4 expandtab
@@ -65,7 +65,7 @@ set clipboard=unnamed
 set splitbelow
 set splitright
 
-"Status-line
+" Status-line
 set statusline=
 set statusline+=%#IncSearch#
 set statusline+=\ %y
@@ -82,8 +82,17 @@ let python_highlight_all=1
 let NERDTreeShowHidden=1
 let g:livepreview_previewer = 'evince'
 
-"nao abrir arquivos na janela do nerdtree
+" funcoes personalizadas
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+" nao abrir arquivos na janela do nerdtree
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+autocmd BufWritePre * :call TrimWhitespace()
+autocmd Filetype tex setl updatetime=1
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4
@@ -94,16 +103,9 @@ au BufNewFile,BufRead *.py
     \ set autoindent
     \ set fileformat=unix
 
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
 
-autocmd BufWritePre * :call TrimWhitespace()
-autocmd Filetype tex setl updatetime=1
 
-"Key-bindings
+" Key-bindings
 let mapleader=" "
 map <F3> :source ~/.vimrc<CR>
 map <F2> :NERDTreeToggle<CR>
@@ -117,4 +119,4 @@ nnoremap <C-H> <C-W><C-H>
 set guifont=Fira\ Code\ 12
 set t_Co=256
 set background=dark termguicolors cursorline
-colorscheme onedark
+colorscheme dracula
