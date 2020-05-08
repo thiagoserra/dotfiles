@@ -1,3 +1,10 @@
+" Thiago Serra Ferreira de Carvalho
+" thiagoserra.github.io
+" -------------------------------------
+" .vimrc -> Linux
+" -------------------------------------
+
+
 " -------------------------
 " VUNDLE.VIM REQUIRE CONFIG
 " START -------------------
@@ -8,21 +15,22 @@ set hidden
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "Tools
-	Plugin 'VundleVim/Vundle.vim'
+    Plugin 'VundleVim/Vundle.vim'
     Plugin 'davidhalter/jedi-vim'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'xuhdev/vim-latex-live-preview'
 "Syntax
 	Plugin 'vim-scripts/indentpython.vim'
 	Plugin 'nvie/vim-flake8'
-    Plugin 'maralla/completor.vim'
+	Plugin 'maralla/completor.vim'
 	Plugin 'tpope/vim-markdown'
-    Plugin 'mattn/emmet-vim'
+	Plugin 'mattn/emmet-vim'
 "Themes
 	Plugin 'dracula/vim'
-    Plugin 'morhetz/gruvbox'
-    Plugin 'joshdick/onedark.vim'
+	Plugin 'morhetz/gruvbox'
+	Plugin 'joshdick/onedark.vim'
 
 call vundle#end()
 " -------------------------
@@ -71,9 +79,8 @@ set statusline+=\ [%c]
 
 " config  - plugins
 let python_highlight_all=1
-let g:kite_auto_complete=1
-let g:kite_tab_complete=1
 let NERDTreeShowHidden=1
+let g:livepreview_previewer = 'evince'
 
 "nao abrir arquivos na janela do nerdtree
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
@@ -94,11 +101,13 @@ fun! TrimWhitespace()
 endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
+autocmd Filetype tex setl updatetime=1
 
 "Key-bindings
 let mapleader=" "
 map <F3> :source ~/.vimrc<CR>
 map <F2> :NERDTreeToggle<CR>
+map <F5> :LLPStartPreview<CR>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -109,4 +118,3 @@ set guifont=Fira\ Code\ 12
 set t_Co=256
 set background=dark termguicolors cursorline
 colorscheme onedark
-
