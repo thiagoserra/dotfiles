@@ -116,8 +116,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
+
+# --------------------
+# Minhas configurações
+# --------------------
+export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+
+
+# --------------------
+# Alias
+# --------------------
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
 alias install='sudo apt install'
