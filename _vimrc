@@ -9,7 +9,7 @@ call plug#begin('c:\users\c073835\.vim\plugged')
 Plug 'davidhalter/jedi-vim'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 "Syntax
 Plug 'vim-scripts/indentpython.vim'
 Plug 'nvie/vim-flake8'
@@ -66,11 +66,11 @@ set statusline+=\ [%c]
 " config  - plugins
 let python_highlight_all=1
 
-let g:livepreview_previewer = 'evince'
+let g:livepreview_previewer = 'sumatrapdf'
 
 "let g:mkdp_auto_close=0
 "let g:mkdp_refresh_slow=1
-let g:mkdp_browser = 'vivaldi'
+let g:mkdp_browser = 'Google Chrome'
 
 let g:vim_markdown_folding_disabled = 1
 let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
@@ -108,8 +108,6 @@ let mapleader=" "
 map <F3> :source C:\users\c073835\_vimrc<CR>
 map <F5> :LLPStartPreview<CR>
 map <C-m> :MarkdownPreview<CR>
-nnoremap <silent> <Leader><Enter> :Buffers<CR>
-nnoremap <silent> <Leader>l :Lines<CR>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>

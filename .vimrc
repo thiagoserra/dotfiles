@@ -6,12 +6,10 @@
 
 call plug#begin('~/.vim/plugged')
 "Tools
-Plug 'VundleVim/Vundle.vim'
 Plug 'davidhalter/jedi-vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'ctrlpvim/ctrlp.vim'
 "Syntax
 Plug 'vim-scripts/indentpython.vim'
 Plug 'nvie/vim-flake8'
@@ -64,35 +62,27 @@ set statusline+=%= "Right side settings
 set statusline+=%#Search#
 set statusline+=\ %l/%L
 set statusline+=\ [%c]
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pdf
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.lnk
 
 " config  - plugins
 let python_highlight_all=1
-
 let g:livepreview_previewer = 'evince'
-
 "let g:mkdp_auto_close=0
 "let g:mkdp_refresh_slow=1
 let g:mkdp_browser = 'vivaldi'
-
 let g:vim_markdown_folding_disabled = 1
-
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-let g:fzf_preview_window = 'right:60%'
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
 
 " funcoes personalizadas
 fun! TrimWhitespace()
     let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
 
-" nao abrir arquivos na janela do nerdtree
-"autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 autocmd BufWritePre * :call TrimWhitespace()
 autocmd Filetype tex setl updatetime=1
 
@@ -110,9 +100,6 @@ let mapleader=" "
 map <F3> :source ~/.vimrc<CR>
 map <F5> :LLPStartPreview<CR>
 map <C-m> :MarkdownPreview<CR>
-nnoremap <silent> <F2> :FZF ~<CR>
-nnoremap <silent> <Leader><Enter> :Buffers<CR>
-nnoremap <silent> <Leader>l :Lines<CR>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -125,7 +112,7 @@ set background=dark termguicolors cursorline
 colorscheme dracula
 
 " tamanho da janela inicial
- if has("gui_running")
+if has("gui_running")
   set lines=70 columns=120
 else
   " This is console Vim.
