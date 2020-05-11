@@ -10,7 +10,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+#HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -121,8 +121,8 @@ fi
 # --------------------
 # Minhas configurações
 # --------------------
-export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
-
+export HISTCONTROL=ignoredups:erasedups 
+complete -cf sudo
 
 # --------------------
 # Alias
@@ -134,11 +134,40 @@ alias install='sudo apt install'
 alias remove='sudo apt remove'
 alias autoremove='sudo apt autoremove'
 alias autoclean='sudo apt autoclean'
-alias rm='rm -i'
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
 alias hgrep='history | grep'
 alias pg='ps aux | grep'
 alias lg='ls -la | grep'
 alias top10="history | awk '{print $2}' | sort | uniq -c | sort -rn | head -n 10"
-
 alias deldocker='docker rm $(docker ps -a -q)'
 alias deldockerimages='docker rmi $(docker images -q)'
+alias ..='cd ..' 
+alias ...='cd ../..'
+
+
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
