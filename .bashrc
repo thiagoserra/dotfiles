@@ -122,7 +122,7 @@ fi
 # Minhas configurações
 # --------------------
 export HISTCONTROL=ignoredups:erasedups 
-complete -cf sudo
+
 
 # --------------------
 # Alias
