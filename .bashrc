@@ -140,4 +140,5 @@ alias pg='ps aux | grep'
 alias lg='ls -la | grep'
 alias top10="history | awk '{print $2}' | sort | uniq -c | sort -rn | head -n 10"
 
-
+alias deldocker='docker rm $(docker ps -a -q)'
+alias deldockerimages='docker rmi $(docker images -q)'
