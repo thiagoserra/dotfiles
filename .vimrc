@@ -70,7 +70,7 @@ let python_highlight_all=1
 let g:livepreview_previewer = 'evince'
 "let g:mkdp_auto_close=0
 let g:mkdp_refresh_slow=1
-let g:mkdp_browser = 'vivaldi'
+let g:mkdp_browser = 'google-chrome'
 let g:vim_markdown_folding_disabled = 1
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_working_path_mode = 'ra'
@@ -96,6 +96,7 @@ au BufNewFile,BufRead *.py
 
 " Key-bindings
 let mapleader=" "
+map <F2> :Lex!<CR>
 map <F3> :source ~/.vimrc<CR>
 map <F5> :LLPStartPreview<CR>
 map <C-m> :MarkdownPreview<CR>

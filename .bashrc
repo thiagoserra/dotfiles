@@ -172,7 +172,6 @@ ex ()
 }
 
 
-/usr/bin/neofetch
 curl http://wttr.in
 curl https://corona-stats.online/brazil
 
