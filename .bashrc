@@ -121,13 +121,13 @@ fi
 # --------------------
 # Minhas configurações
 # --------------------
-export HISTCONTROL=ignoredups:erasedups 
+export HISTCONTROL=ignoredups:erasedups
 
 
 # --------------------
 # Alias
 # --------------------
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/projetos_git/dotfiles/ --work-tree=$HOME'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
 alias install='sudo apt install'
@@ -143,9 +143,9 @@ alias lg='ls -la | grep'
 alias top10="history | awk '{print $2}' | sort | uniq -c | sort -rn | head -n 10"
 alias deldocker='docker rm $(docker ps -a -q)'
 alias deldockerimages='docker rmi $(docker images -q)'
-alias ..='cd ..' 
+alias ..='cd ..'
 alias ...='cd ../..'
-
+alias covid='curl https://corona-stats.online/brazil'
 
 # # ex - archive extractor
 # # usage: ex <file>
@@ -171,7 +171,8 @@ ex ()
   fi
 }
 
+#path para os executaveis no local/bin
+export PATH="/home/thiago/.local/bin/:$PATH"
 
+#tempo local
 curl http://wttr.in
-curl https://corona-stats.online/brazil
-
